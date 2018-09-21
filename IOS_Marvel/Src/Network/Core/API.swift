@@ -39,23 +39,46 @@ class API {
     /// - Returns: the data [String: Any] on the key "data" will return when meet those conditions:
     ///             - valid statusCode
     
+//    public class func request(_ request: URLRequestConvertible) -> Observable<[String: Any]> {
+//        return sessionManager.rx
+//            .request(urlRequest: request)
+//            .responseJSON()
+//            .flatMap({ responseJson -> Observable<[String: Any]> in
+//                guard let response = responseJson.response,
+//                    let data = responseJson.result.value else {
+//                        // TODO: Implement Error
+//                        fatalError()
+//                }
+//                if response.statusCode >= 200 && response.statusCode < 300 {
+//                    guard let json = data as? [String: Any] else {
+//                        fatalError()
+//                    }
+//                    return Observable.just(json)
+//                } else {
+//                    fatalError()
+//                }
+//            })
+//    }
+    
     public class func request(_ request: URLRequestConvertible) -> Observable<[String: Any]> {
         return sessionManager.rx
             .request(urlRequest: request)
             .responseJSON()
             .flatMap({ responseJson -> Observable<[String: Any]> in
-                guard let response = responseJson.response,
-                    let data = responseJson.result.value else {
-                        // TODO: Implement Error
-                        fatalError()
+                guard let data = responseJson.result.value else {
+                    return Observable.error(APIError.parserJsonError)
                 }
-                if response.statusCode >= 200 && response.statusCode < 300 {
-                    guard let json = data as? [String: Any] else {
-                        fatalError()
-                    }
-                    return Observable.just(json)
+                guard let json = data as? [String: Any] else {
+                    return Observable.error(APIError.parserJsonError)
+                }
+                return Observable.just(json)
+            })
+            .mapObject(type: Response.self)
+            .flatMap({ response -> Observable<[String: Any]> in
+                if let data = response.data {
+                    return Observable.just(data)
                 } else {
-                    fatalError()
+                    return Observable.error(APIError.apiFailure)
                 }
             })
     }

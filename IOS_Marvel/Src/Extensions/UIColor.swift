@@ -71,6 +71,6 @@ extension UIColor {
     }
     
     static var red: UIColor {
-        return hex("F05A63")
+        return hex("F44336")
     }
 }

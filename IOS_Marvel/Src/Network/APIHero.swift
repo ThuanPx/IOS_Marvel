@@ -40,7 +40,7 @@ enum APIHero: URLRequestConvertible, APIRequestProtocol {
         switch self {
         case .fetchHero(let offset, let ts, let apiKey, let hash):
             return [Constants.APIKey.offset: offset, Constants.APIKey.ts: ts
-                    ,Constants.APIKey.apiKey: apiKey, Constants.APIKey.hash: hash]
+                ,Constants.APIKey.apiKey: apiKey, Constants.APIKey.hash: hash]
         }
     }
     
@@ -54,16 +54,13 @@ enum APIHero: URLRequestConvertible, APIRequestProtocol {
 }
 
 extension API {
-    class func fetchHero(offset: Int, ts: Double, apiKey: String, hash: String)-> Observable<[Hero]>{
+    class func fetchHero(offset: Int, ts: Double, apiKey: String, hash: String) -> Observable<[Hero]>{
         let request = APIHero.fetchHero(offset: offset, ts: ts, apiKey: apiKey, hash: hash)
-        return API.request(request).flatMap({ (json) -> Observable<[Hero]> in
+        return API.request(request).flatMap({ (json) -> Observable<[[String:Any]]> in
             guard let data = json["results"] as? [[String:Any]] else {
                 return Observable.error(APIError.parserJsonError)
             }
-            let list = Mapper<Hero>().mapArray(JSONArray: data)
-            print("count test \(list.count) ")
-            return Observable.just(list)
-        })
-        
+            return Observable.just(data)
+        }).mapArray(type: Hero.self)
     }
 }

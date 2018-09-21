@@ -16,7 +16,7 @@ extension Observable where E == [String: Any] {
     public func mapObject<T: Mappable>(type: T.Type) -> Observable<T> {
         return flatMap { (data) -> Observable<T> in
             guard let object = Mapper<T>().map(JSONObject: data) else {
-                return Observable<T>.error(APIError.parserJsonError)
+                return Observable<T>.error(NSError())
             }
             return Observable<T>.just(object)
         }
@@ -27,7 +27,7 @@ extension Observable where E == [[String: Any]] {
     public func mapArray<T: Mappable>(type: T.Type) -> Observable<[T]> {
         return flatMap { (data) -> Observable<[T]> in
             guard let arrayObject = Mapper<T>().mapArray(JSONObject: data) else {
-                return Observable<[T]>.error(APIError.parserJsonError)
+                return Observable<[T]>.error(NSError())
             }
             return Observable<[T]>.just(arrayObject)
         }

@@ -7,14 +7,24 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var ivAvatar: UIImageView!
     @IBOutlet weak var lblName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        lblName.textAlignment = .center
+        lblName.backgroundColor = UIColor.red
+    }
+    
+    func bindHero(_ hero: Hero){
+        if let url = hero.urlHero?.url {
+            ivAvatar.kf.setImage(with: URL(string: url+"/standard_xlarge.jpg"))
+        }
+        lblName.text = hero.name
     }
 
 }
