@@ -12,5 +12,6 @@ pod 'SwiftyJSON', '~> 4.0'
 pod 'Kingfisher'
 pod 'SVProgressHUD'
 pod 'AlamofireNetworkActivityLogger'
+pod 'WCLShineButton'
 
 end

@@ -17,7 +17,7 @@ class HeroViewController: BaseViewController, ViewModelViewController {
         static let NUMBER_ITEM_SECTION = 2
     }
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBarHero: UISearchBar!
     @IBOutlet weak var collectionHero: UICollectionView!
     fileprivate let sectionInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     fileprivate let itemsPerRow: CGFloat = 2
@@ -31,14 +31,22 @@ class HeroViewController: BaseViewController, ViewModelViewController {
     }
     
     override func bindViewModel() {
-        let input = HeroViewModel.Input(viewWillAppearTrigger: rx.viewWillAppear.asDriver().mapToVoid())
-        let output = viewModel.transform(input: input)
+        let indexSelected = collectionHero.rx.itemSelected.asDriver().map({$0.row})
+        let kq = searchBarHero.rx.text.asDriver().debounce(0.5)
+
+        let input = HeroViewModel.Input(viewWillAppearTrigger:rx.viewWillAppear.asDriver().mapToVoid(),
+                                        indexSelected: indexSelected,
+                                        keyWork: kq)
+        let output = viewModel.transform(input: input, with: bag)
         
-        output.fetchHeroSucces.drive(onNext:{
-            [weak self] _ in
+        output.fetchHero.drive(onNext:{ [weak self] _ in
             self?.collectionHero.reloadData()
         }).disposed(by: self)
         
+        output.searchHero.drive(onNext: {[weak self] _ in
+            self?.collectionHero.reloadData()
+        }).disposed(by: self)
+
         viewModel.errorTracker.asDriver().drive(onNext:{ [weak self] error in
             self?.showErrorAlert(error: error.localizedDescription)
         }).disposed(by: self)

@@ -9,11 +9,10 @@
 import Foundation
 import UIKit
 
-public protocol HeroNavigator {
-    func moveToDetail()
+protocol HeroNavigator {
+    func moveToDetail(_ hero: Hero)
     func moveToHero()
 }
-
 class DefaultHeroNavigator: HeroNavigator {
     
     private let navigation: UINavigationController
@@ -22,7 +21,11 @@ class DefaultHeroNavigator: HeroNavigator {
         self.navigation = navigation
     }
     
-    func moveToDetail() {
+    func moveToDetail(_ hero: Hero) {
+        let navigator = DefaultDetailNavigator(navigator: navigation)
+        let viewModel = DetailViewModel(navigator: navigator, hero: hero)
+        let controller = DetailViewController.createWith(viewModel)
+        navigation.pushViewController(controller, animated: true)
     }
     
     func moveToHero() {

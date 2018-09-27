@@ -12,14 +12,14 @@ class HomeViewController: UITabBarController, ViewModelViewController {
     
     enum TabbarItem: Int {
         case Hero
-        case Favorite
+        //case Favorite
     
         func title() -> String{
             switch self {
             case .Hero:
                 return "Hero"
-            case .Favorite:		    
-                return "Favorite"
+//            case .Favorite:
+//                return "Favorite"
             }
         }
         
@@ -27,8 +27,6 @@ class HomeViewController: UITabBarController, ViewModelViewController {
             switch self {
             case .Hero:
                 return UIImage(named: "ic_hero")!
-            case .Favorite:
-                return UIImage(named: "ic_favorite")!
             }
         }
     }

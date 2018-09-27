@@ -11,6 +11,10 @@ import ObjectMapper
 
 struct ImageHero {
     var url: String?
+    
+    init(url: String) {
+        self.url = url
+    }
 }
 
 extension ImageHero: Mappable{
@@ -19,6 +23,6 @@ extension ImageHero: Mappable{
     }
     
     mutating func mapping(map: Map) {
-        url <- map["path"]
+        url <- (map["path"], URLTransform())
     }
 }

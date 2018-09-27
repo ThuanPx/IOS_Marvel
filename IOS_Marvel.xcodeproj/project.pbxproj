@@ -18,6 +18,11 @@
 		904B2F57215353BB0021ECC9 /* FavoriteNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904B2F56215353BB0021ECC9 /* FavoriteNavigator.swift */; };
 		904B2F59215353FF0021ECC9 /* HeroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904B2F58215353FF0021ECC9 /* HeroViewModel.swift */; };
 		904B2F5B215354130021ECC9 /* HeroNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904B2F5A215354130021ECC9 /* HeroNavigator.swift */; };
+		905EF8B221587D2D004EC962 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905EF8B121587D2D004EC962 /* DetailViewModel.swift */; };
+		905EF8B421587D42004EC962 /* DetailNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905EF8B321587D42004EC962 /* DetailNavigator.swift */; };
+		905EF8B721587D63004EC962 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905EF8B521587D63004EC962 /* DetailViewController.swift */; };
+		905EF8B821587D63004EC962 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 905EF8B621587D63004EC962 /* DetailViewController.xib */; };
+		905EF8BA2158BEB1004EC962 /* URLTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905EF8B92158BEB1004EC962 /* URLTransform.swift */; };
 		907C0C132154868900FA10AA /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C0C122154868900FA10AA /* AppError.swift */; };
 		907C0C152154892700FA10AA /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C0C142154892700FA10AA /* Response.swift */; };
 		907C0C1721549D1100FA10AA /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C0C1621549D1100FA10AA /* ViewModelProtocol.swift */; };
@@ -68,6 +73,11 @@
 		904B2F56215353BB0021ECC9 /* FavoriteNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNavigator.swift; sourceTree = "<group>"; };
 		904B2F58215353FF0021ECC9 /* HeroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroViewModel.swift; sourceTree = "<group>"; };
 		904B2F5A215354130021ECC9 /* HeroNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroNavigator.swift; sourceTree = "<group>"; };
+		905EF8B121587D2D004EC962 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		905EF8B321587D42004EC962 /* DetailNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNavigator.swift; sourceTree = "<group>"; };
+		905EF8B521587D63004EC962 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		905EF8B621587D63004EC962 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		905EF8B92158BEB1004EC962 /* URLTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTransform.swift; sourceTree = "<group>"; };
 		907C0C122154868900FA10AA /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		907C0C142154892700FA10AA /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		907C0C1621549D1100FA10AA /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -151,6 +161,7 @@
 		904B2F4221533A480021ECC9 /* Hero */ = {
 			isa = PBXGroup;
 			children = (
+				90CF192E2153782600C5A278 /* Cells */,
 				904B2F58215353FF0021ECC9 /* HeroViewModel.swift */,
 				904B2F5A215354130021ECC9 /* HeroNavigator.swift */,
 				90CF192A2153599800C5A278 /* HeroViewController.swift */,
@@ -168,6 +179,17 @@
 				904B2F51215353830021ECC9 /* FavoriteViewController.xib */,
 			);
 			path = Favorite;
+			sourceTree = "<group>";
+		};
+		905EF8B021587CE5004EC962 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				905EF8B121587D2D004EC962 /* DetailViewModel.swift */,
+				905EF8B321587D42004EC962 /* DetailNavigator.swift */,
+				905EF8B521587D63004EC962 /* DetailViewController.swift */,
+				905EF8B621587D63004EC962 /* DetailViewController.xib */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		907C0C112154865F00FA10AA /* Error */ = {
@@ -281,7 +303,7 @@
 		90CC1DD421523D9900544DF8 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				90CF192E2153782600C5A278 /* Cells */,
+				905EF8B021587CE5004EC962 /* Detail */,
 				904B2F4221533A480021ECC9 /* Hero */,
 				904B2F4321533A5B0021ECC9 /* Favorite */,
 				904B2F4121533A160021ECC9 /* Home */,
@@ -294,6 +316,7 @@
 			children = (
 				90CF193321537DF800C5A278 /* Hero.swift */,
 				90CF193521537EB300C5A278 /* ImageHero.swift */,
+				905EF8B92158BEB1004EC962 /* URLTransform.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -391,6 +414,7 @@
 				90CC1DC721523C1900544DF8 /* LaunchScreen.storyboard in Resources */,
 				90CC1DC421523C1900544DF8 /* Assets.xcassets in Resources */,
 				90CF192D2153599800C5A278 /* HeroViewController.xib in Resources */,
+				905EF8B821587D63004EC962 /* DetailViewController.xib in Resources */,
 				90CC1DC221523C1600544DF8 /* Main.storyboard in Resources */,
 				90CF19322153784900C5A278 /* HomeCollectionViewCell.xib in Resources */,
 				904B2F53215353830021ECC9 /* FavoriteViewController.xib in Resources */,
@@ -419,6 +443,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/WCLShineButton/WCLShineButton.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -433,6 +458,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WCLShineButton.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -470,13 +496,16 @@
 			files = (
 				90CF192C2153599800C5A278 /* HeroViewController.swift in Sources */,
 				90CF193B21538DD700C5A278 /* ObjectMapper.swift in Sources */,
+				905EF8BA2158BEB1004EC962 /* URLTransform.swift in Sources */,
 				90CC1DE12152414A00544DF8 /* ErrorTracker.swift in Sources */,
 				904B2F4721533B3A0021ECC9 /* HomeNavigator.swift in Sources */,
 				90CC1DFF2152436F00544DF8 /* API.swift in Sources */,
 				90CC1DEC2152418C00544DF8 /* NSObject.swift in Sources */,
+				905EF8B421587D42004EC962 /* DetailNavigator.swift in Sources */,
 				904B2F59215353FF0021ECC9 /* HeroViewModel.swift in Sources */,
 				90CC1DF72152431200544DF8 /* DisposableClass.swift in Sources */,
 				90CC1DEB2152418C00544DF8 /* Strings.swift in Sources */,
+				905EF8B721587D63004EC962 /* DetailViewController.swift in Sources */,
 				904B2F55215353A40021ECC9 /* FavoriteViewModel.swift in Sources */,
 				90CC1DDF2152414A00544DF8 /* ActivityIndicator.swift in Sources */,
 				90CC1E022152436F00544DF8 /* URLRequest.swift in Sources */,
@@ -490,6 +519,7 @@
 				90CC1DE02152414A00544DF8 /* Enumerable.swift in Sources */,
 				90CF193621537EB300C5A278 /* ImageHero.swift in Sources */,
 				90CC1DF2215242E300544DF8 /* BaseNavigationController.swift in Sources */,
+				905EF8B221587D2D004EC962 /* DetailViewModel.swift in Sources */,
 				90CF193421537DF800C5A278 /* Hero.swift in Sources */,
 				90CF19312153784900C5A278 /* HomeCollectionViewCell.swift in Sources */,
 				90CC1DE92152418C00544DF8 /* UIColor.swift in Sources */,
@@ -654,6 +684,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IOS_Marvel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -672,6 +703,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IOS_Marvel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

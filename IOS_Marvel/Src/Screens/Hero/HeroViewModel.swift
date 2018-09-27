@@ -32,13 +32,16 @@ extension HeroViewModel: ViewModelProtocol {
     
     struct Input {
         let viewWillAppearTrigger: Driver<Void>
+        let indexSelected: Driver<Int>
+        let keyWork: Driver<String?>
     }
     
     struct Output {
-        let fetchHeroSucces: Driver<Void>
+        let fetchHero: Driver<Void>
+        let searchHero: Driver<Void>
     }
     
-    func transform(input: HeroViewModel.Input) -> HeroViewModel.Output {
+    func transform(input: HeroViewModel.Input, with bag: DisposeBag) -> HeroViewModel.Output {
         let fetchHero = input.viewWillAppearTrigger.flatMap({
             [unowned self] _ -> Driver<[Hero]> in
             return API.fetchHero(offset: 0, ts: Constants.TS, apiKey: Constants.API_KEY, hash: Constants.HASH_KEY)
@@ -49,7 +52,23 @@ extension HeroViewModel: ViewModelProtocol {
             self.heroes.value = heroes
         }).mapToVoid()
         
-        return Output(fetchHeroSucces: fetchHero)
+        input.indexSelected.drive( onNext: {[weak self] index in
+            guard let `self` = self else { return }
+            let hero = self.hero(at: index)
+            self.navigator.moveToDetail(hero)
+        }).disposed(by: bag)
+        
+       let searchHero = input.keyWork.filter{!$0.isWhiteSpaceOrEmpty()}
+            .flatMap{[unowned self] keyWord -> Driver<[Hero]> in
+                return API.searchHero(nameStartsWith: keyWord!, ts: Constants.TS, apikey: Constants.API_KEY, hash: Constants.HASH_KEY)
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }.do(onNext:{[unowned self] items in
+                self.heroes.value = items
+            }).mapToVoid()
+        
+        return Output(fetchHero: fetchHero, searchHero: searchHero)
     }
     
     func itemCount() -> Int {

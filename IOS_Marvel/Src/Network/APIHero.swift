@@ -17,12 +17,14 @@ private struct Constants {
         static let ts = "ts"
         static let apiKey = "apikey"
         static let hash = "hash"
+        static let nameStartsWith = "nameStartsWith"
     }
 }
 
 enum APIHero: URLRequestConvertible, APIRequestProtocol {
     
     case fetchHero(offset: Int, ts: Double, apiKey: String, hash: String)
+    case searchHero(nameStartsWith: String, ts: Double, apikey: String, hash: String)
     
     var method: HTTPMethod{
         return .get
@@ -41,6 +43,9 @@ enum APIHero: URLRequestConvertible, APIRequestProtocol {
         case .fetchHero(let offset, let ts, let apiKey, let hash):
             return [Constants.APIKey.offset: offset, Constants.APIKey.ts: ts
                 ,Constants.APIKey.apiKey: apiKey, Constants.APIKey.hash: hash]
+        case .searchHero(let name, let ts, let api, let hash):
+            return [Constants.APIKey.nameStartsWith: name, Constants.APIKey.ts: ts
+                ,Constants.APIKey.apiKey: api, Constants.APIKey.hash: hash]
         }
     }
     
@@ -57,6 +62,16 @@ extension API {
     class func fetchHero(offset: Int, ts: Double, apiKey: String, hash: String) -> Observable<[Hero]>{
         let request = APIHero.fetchHero(offset: offset, ts: ts, apiKey: apiKey, hash: hash)
         return API.request(request).flatMap({ (json) -> Observable<[[String:Any]]> in
+            guard let data = json["results"] as? [[String:Any]] else {
+                return Observable.error(APIError.parserJsonError)
+            }
+            return Observable.just(data)
+        }).mapArray(type: Hero.self)
+    }
+    
+    class func searchHero(nameStartsWith: String, ts: Double, apikey: String, hash: String) -> Observable<[Hero]>{
+        let request = APIHero.searchHero(nameStartsWith: nameStartsWith, ts: ts, apikey: apikey, hash: hash)
+        return API.request(request).flatMap({ (json) -> Observable<[[String : Any]]> in
             guard let data = json["results"] as? [[String:Any]] else {
                 return Observable.error(APIError.parserJsonError)
             }

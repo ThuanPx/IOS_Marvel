@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeroViewController" customModule="IOS_Marvel" customModuleProvider="target">
             <connections>
                 <outlet property="collectionHero" destination="qyd-3V-e6c" id="HKn-WT-Tkh"/>
-                <outlet property="searchBar" destination="jWk-io-dcz" id="4VH-My-KNj"/>
+                <outlet property="searchBarHero" destination="jWk-io-dcz" id="dfX-gC-i9i"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

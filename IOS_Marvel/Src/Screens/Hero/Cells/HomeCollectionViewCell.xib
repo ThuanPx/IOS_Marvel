@@ -27,6 +27,17 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sUu-1b-akJ" customClass="WCLShineButton" customModule="WCLShineButton">
+                        <rect key="frame" x="184" y="20" width="30" height="30"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="6XL-vp-j8I"/>
+                            <constraint firstAttribute="width" constant="30" id="sDV-F2-4oh"/>
+                        </constraints>
+                        <connections>
+                            <action selector="actionLike:" destination="gTV-IL-0wX" eventType="touchUpInside" id="KVK-T5-mKv"/>
+                        </connections>
+                    </view>
                 </subviews>
             </view>
             <constraints>
@@ -36,16 +47,19 @@
                 <constraint firstItem="L3s-qj-75T" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="f73-mj-ICo"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="L3s-qj-75T" secondAttribute="bottom" constant="30" id="guQ-Rt-dOS"/>
                 <constraint firstItem="L3s-qj-75T" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="kei-Mf-cYt"/>
+                <constraint firstItem="sUu-1b-akJ" firstAttribute="leading" secondItem="L3s-qj-75T" secondAttribute="trailing" constant="-43" id="krL-cD-3yq"/>
                 <constraint firstItem="vq2-cw-Ozu" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="rMf-8m-WFe"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="vq2-cw-Ozu" secondAttribute="trailing" id="tf2-gw-PZW"/>
+                <constraint firstItem="L3s-qj-75T" firstAttribute="top" secondItem="sUu-1b-akJ" secondAttribute="bottom" constant="-50" id="wmZ-p0-TM4"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="207" height="245"/>
             <connections>
+                <outlet property="btnLike" destination="sUu-1b-akJ" id="0VR-PN-NHl"/>
                 <outlet property="ivAvatar" destination="L3s-qj-75T" id="3pK-Cw-06r"/>
                 <outlet property="lblName" destination="vq2-cw-Ozu" id="PmV-8u-GPe"/>
             </connections>
-            <point key="canvasLocation" x="-165.59999999999999" y="117.84107946026987"/>
+            <point key="canvasLocation" x="-420" y="192.50374812593705"/>
         </collectionViewCell>
     </objects>
 </document>
